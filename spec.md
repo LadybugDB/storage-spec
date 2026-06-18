@@ -429,10 +429,10 @@ Indexes (`src/storage/index/`) provide primary-key and secondary lookups.
 `InMemHashIndex` is the in-memory builder used during `COPY`/bulk load; it is
 flushed to the on-disk hash index at commit.
 
-### 9.2 ART index (secondary)
+### 9.2 ART index (both primary and secondary)
 
-`ARTIndex` (`art_index.cpp`, `art_index_disk.cpp`) is an adaptive radix tree for
-secondary indexes. Nodes are written to the data file in `LBUG_PAGE_SIZE`-aligned
+`ARTIndex` (`art_index.cpp`, `art_index_disk.cpp`) is an [adaptive radix tree](https://db.in.tum.de/~leis/papers/ART.pdf) for
+indexes. Nodes are written to the data file in `LBUG_PAGE_SIZE`-aligned
 chunks via `ARTIndexDiskUtils`; leaf/prefix layout follows the standard ART
 design. `IndexStorageInfo` carries the ART's root page and layout.
 
